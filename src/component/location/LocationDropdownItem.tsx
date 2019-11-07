@@ -6,9 +6,10 @@ interface ILocationDropdownItem {
     location: Location
 }
 
-export const LocationDropdownItem: React.FC<ILocationDropdownItem> = ({location}) => {
+export const LocationDropdownItem: React.FC<ILocationDropdownItem> = ({location}: {location:Location}) => {
     let typeLabel: string
     let typeColor: string
+
     switch(location.type) {
         case LocationType.Airport: 
             typeLabel = 'Airport'
@@ -31,17 +32,10 @@ export const LocationDropdownItem: React.FC<ILocationDropdownItem> = ({location}
             </div>
             <div className='LocationDropdownItem__content'>
                 <div className='LocationDropdownItem__content__title'>
-                    <span>{location.name}</span>
-                    {location.iata ? ` (${location.iata})` : ''}
+                    {location.getLocationName()}
                 </div>
                 <div className='LocationDropdownItem__content__subtitle'>
-                    <div>
-                    {
-                        (location.region && location.country) ?
-                            <span>{location.region}, {location.country}</span> :
-                            <span>{location.region}{location.country}</span>
-                    }
-                    </div>
+                    <div>{location.getCountryDescription()}</div>
                 </div>
             </div>
         </div>

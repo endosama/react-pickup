@@ -1,10 +1,10 @@
 import React, { useState, ChangeEvent } from 'react';
-import './Dropdown.scss'
 import { ResourceService } from '../../service/ResourceService';
 import { Location } from '../../data/Location';
 import { DropdownItem } from '../dropdown/DropdownItem';
 import { LocationDropdownItem } from '../location/LocationDropdownItem';
 import { Loader } from '../loader/Loader';
+import './Dropdown.scss'
 
 interface IDropdown {
     placeholder: string;
@@ -38,8 +38,7 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
     };
 
     const notifyLocationClicked = (location: Location) => {
-        const inputText = `${location.name} ${location.iata ? `(${location.iata})` : ''}, ${location.city}`
-        setText(inputText)
+        setText(location.getFullDescription())
         setOpened(false) 
     }
 

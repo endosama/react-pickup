@@ -19,4 +19,19 @@ export class Location {
         this.region = raw.region;
         this.country = raw.country;
     }
+    getCountryDescription() {
+        let stringDescriptions = this.type === LocationType.Airport ? [this.city, this.country] : [this.city, this.region, this.country];
+        return stringDescriptions.filter(str => str !== undefined && str !== '').join(', ')
+    }
+    getLocationName() {
+        if(this.type === LocationType.Airport) {
+            return `${this.name} (${this.iata})`;
+        } else {
+            return this.name;
+        }
+    }
+
+    getFullDescription() {
+        return `${this.getLocationName()}, ${this.getCountryDescription()}`
+    }
 }

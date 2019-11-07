@@ -3,12 +3,13 @@ import { Location, LocationType } from '../../data/Location';
 import './DropdownItem.scss'
 
 interface IDropdownItem {
-    location: Location;
+    location: Location
     key: number
+    notifyClick: Function
 }
 
 export const DropdownItem: React.FC<IDropdownItem> = (props) => {
-    const {location} = props;
+    const {location, notifyClick} = props;
     let typeName: string
     let typeColor: string
     switch(location.type) {
@@ -26,7 +27,7 @@ export const DropdownItem: React.FC<IDropdownItem> = (props) => {
             break;
     }
 
-    return <div className='DropdownItem'>
+    return <div className='DropdownItem' onClick={() => notifyClick()}>
             <div className='DropdownItem__type'>
                 <span style={{backgroundColor: typeColor}}>{typeName}</span>
             </div>

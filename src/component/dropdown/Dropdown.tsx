@@ -12,7 +12,9 @@ interface IDropdown {
 export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
     const [text, setText] = useState("")
     const [loading, setLoading] = useState(false)
-    const [datasource, setDatasource] = useState<Location[] | null>(null)
+    const [datasource, setDatasource] = useState<Location[]>([])
+    const [isOpened, setOpened] = useState(false)
+
     const handleSetText = async (e: ChangeEvent<HTMLInputElement>) => {
         const value = e.currentTarget.value
         setText(value)
@@ -25,11 +27,19 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
                 setDatasource([])
             } finally {
                 setLoading(false)
+                setOpened(true)
             }
         } else {
-            setDatasource(null)
+            setOpened(false)
+            setDatasource([])
         }
     };
+
+    const notifyLocationClicked = (location: Location) => {
+        const inputText = `${location.name} ${location.iata ? `(${location.iata})` : ''}, ${location.city}`
+        setText(inputText)
+        setOpened(false) 
+    }
 
     return <div className="Dropdown">
         <div className="Dropdown__label">
@@ -40,10 +50,12 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
             {loading && <span className="Dropdown__loader"></span>}
             <div className="Dropdown__pickup">
                 {
-                    datasource &&
+                    isOpened &&
                     (
                         datasource.length > 0 ?
-                            datasource.map((location: Location, i: number) => (<DropdownItem key={i} location={location}></DropdownItem>))
+                            datasource.map((location: Location, i: number) => (
+                                <DropdownItem key={i} location={location} notifyClick={() => notifyLocationClicked(location)}></DropdownItem>)
+                            )
                             :
                             <span>No results found</span>
                     )

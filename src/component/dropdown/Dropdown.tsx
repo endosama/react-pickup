@@ -1,8 +1,9 @@
-    import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import './Dropdown.scss'
 import { ResourceService } from '../../service/ResourceService';
 import { Location } from '../../data/Location';
 import { DropdownItem } from '../dropdown/DropdownItem';
+import { LocationDropdownItem } from '../location/LocationDropdownItem';
 
 interface IDropdown {
     placeholder: string;
@@ -54,10 +55,14 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
                     (
                         datasource.length > 0 ?
                             datasource.map((location: Location, i: number) => (
-                                <DropdownItem key={i} location={location} notifyClick={() => notifyLocationClicked(location)}></DropdownItem>)
+                                <DropdownItem key={i} notifyClick={() => notifyLocationClicked(location)}>
+                                    <LocationDropdownItem location={location}></LocationDropdownItem>
+                                </DropdownItem>)
                             )
                             :
-                            <span>No results found</span>
+                            <DropdownItem key={0} notifyClick={() => {}}>
+                                <div >No results found</div>
+                            </DropdownItem>
                     )
                 }
             </div>

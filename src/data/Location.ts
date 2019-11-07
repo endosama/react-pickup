@@ -10,11 +10,13 @@ export class Location {
     type: LocationType;
     city: string;
     region: string;
-    constructor(raw : {name: string, iata: string, type: LocationType, city: string, region: string}) {
+    country: string;
+    constructor(raw : {name: string, iata: string, type: LocationType, city: string, region: string, country: string}) {
         this.name = raw.name;
         this.iata = raw.iata;
         this.type = raw.type;
         this.city = raw.city;
         this.region = raw.region;
+        this.country = raw.country;
     }
 }

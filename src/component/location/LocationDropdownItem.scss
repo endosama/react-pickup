@@ -1,0 +1,29 @@
+.LocationDropdownItem {
+    display: flex;
+    flex-direction: row;
+   
+    &__type {
+        padding-right: 16px;
+        min-width: 50px;
+        text-align: center;
+        & span {
+            color:white;
+            border-radius: 5px;
+            padding: 2px 5px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+    }
+    &__content {
+        display: flex;
+        flex-direction: column;
+        &__title{
+            font-size: 14px;
+            display: flex;
+            flex-direction: row;
+        }
+        &__subtitle {
+            font-size: 12px;
+        }
+    }
+}

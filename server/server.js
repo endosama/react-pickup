@@ -13,14 +13,20 @@ app.get("/api/search/:text", (req, res) => {
         .then(response => {
             const results = response.data.results;
             const docs = results ? results.docs : []
-            const formattedResult = docs.map(doc => ({
-                name: doc.name,
-                iata: doc.iata,
-                type: doc.placeType,
-                city: doc.country,
-                region: doc.region,
-            }))
-            res.json(formattedResult)
+            if(results.numFound > 0) {
+                const formattedResult = docs.map(doc => ({
+                    name: doc.name,
+                    iata: doc.iata,
+                    type: doc.placeType,
+                    city: doc.country,
+                    region: doc.region,
+                    country: doc.country
+                }))
+
+                res.json(formattedResult)
+            } else {
+                res.json([])
+            }
         })
 });
 

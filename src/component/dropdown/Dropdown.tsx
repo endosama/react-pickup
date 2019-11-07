@@ -4,6 +4,7 @@ import { ResourceService } from '../../service/ResourceService';
 import { Location } from '../../data/Location';
 import { DropdownItem } from '../dropdown/DropdownItem';
 import { LocationDropdownItem } from '../location/LocationDropdownItem';
+import { Loader } from '../loader/Loader';
 
 interface IDropdown {
     placeholder: string;
@@ -48,7 +49,12 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
         </div>
         <div>
             <input className="Dropdown__input" value={text} onChange={handleSetText} type='text' placeholder={placeholder} />
-            {loading && <span className="Dropdown__loader"></span>}
+            {
+                loading && 
+                <span className="Dropdown__loader">
+                    <Loader></Loader>
+                </span>
+            }
             <div className="Dropdown__pickup">
                 {
                     isOpened &&
@@ -61,7 +67,7 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
                             )
                             :
                             <DropdownItem key={0} notifyClick={() => {}}>
-                                <div >No results found</div>
+                                <div>No results found</div>
                             </DropdownItem>
                     )
                 }

@@ -18,7 +18,7 @@ app.get("/api/search/:text", (req, res) => {
                     name: doc.name,
                     iata: doc.iata,
                     type: doc.placeType,
-                    city: doc.country,
+                    city: doc.city,
                     region: doc.region,
                     country: doc.country
                 }))

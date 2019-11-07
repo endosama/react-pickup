@@ -31,11 +31,11 @@ export const DropdownItem: React.FC<IDropdownItem> = (props) => {
                 <span style={{backgroundColor: typeColor}}>{typeName}</span>
             </div>
             <div className='DropdownItem__content'>
-                <div className='DropdownItem__title'>
+                <div className='DropdownItem__content__title'>
                     <strong>{location.name}</strong>
                     {location.iata ? <span>({location.iata})</span> : ''}
                 </div>
-                <div className='DropdownItem__subtitle'>
+                <div className='DropdownItem__content__subtitle'>
                     <div>{location.region}</div>
                 </div>
             </div>

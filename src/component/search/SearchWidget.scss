@@ -1,17 +1,4 @@
 .SearchWidget {
-    &__container {
-        padding: 20px;
-        background-color: #f3ce56;
-    }
-    &__label {
-        font-weight: 400;
-    }
-    &__input {
-        width: calc(100% - 15px);
-        height: 30px;
-        padding-left: 15px;
-    }
-    &__pickup {
-        position: absolute
-    }
+    padding: 20px;
+    background-color: #f3ce56;
 }

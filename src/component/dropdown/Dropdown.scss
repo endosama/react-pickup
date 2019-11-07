@@ -1,14 +1,17 @@
 
-
 .Dropdown {
     position: relative;
     
     &__label {
         font-weight: 400;
+        padding-bottom: 4px;
     }
     &__input {
         width: calc(100% - 15px);
-        height: 30px;
+        height: 48px;
+        font-size: 1rem;
+        border: 1px solid #c8ae5b;
+        border-radius: 4px;
         padding-left: 15px;
     }
     &__pickup {

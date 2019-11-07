@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import { SearchWidget } from './component/search/SearchWidget';
 
 const App: React.FC = () => {

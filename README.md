@@ -22,12 +22,12 @@ https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&
 
 The application has been implemented using `React` 16 and I've used mainly Function Components and Hooks. The base project has been generated with `create-react-app`.
 
-I've chosen to use `netlify` because it simplied me the build process and the deployment of the [demo version](https://react-pickup-location-demo.netlify.com).
+I've chosen to use `netlify` because it simplified the build process and the deployment of the [demo version](https://react-pickup-location-demo.netlify.com).
 
-The node-fetch app is a `netlify` functions that wraps the api call avoiding CORS errors.
-This server is consumed by the `ResourceService` file that map the api results to a collection of `Location` class type.
+The node-fetch app is a `netlify function` that wraps the API call avoiding CORS errors.
+This server is consumed by the `ResourceService` file that maps the API results to a collection of `Location` class type.
 
-The styling of the application has been made with `SASS/BEM` syntax. Every component have his own indipendent SCSS file. There is a global `variables.scss` that should store the common variables for the css.
+The styling of the application has been made with `SASS/BEM` syntax. Every component has its own independent SCSS file. The  `variables.scss` should store the common variables for the SCSS files.
 
 ## User stories
 
@@ -44,10 +44,10 @@ The styling of the application has been made with `SASS/BEM` syntax. Every compo
 
 | TEST2 | Implementation |
 | --- | ---|
-| AC1 | Handled the onChange event of the input box. When a text with length less than 2 character is inserted,  the pickup content is collapsed. Otherwise it's expanded. |
-| AC2 | When a text longer that 2 characters, I trigger the call to load the locations from the api endpoint and show them inside a Dropdown component. |
-| AC3 | The call has a parameter `number_of_results_required` that limits the list of element retrieved from the list. I've set this parameter to 6 inside the `server.js` implementation. | 
-| AC4 | When the call doesn't find any matching parameter, it returns an item with name `No results found` and the result contains a property numFound that is set to 0. Handled this edge case inside the server.js file, returning an empty array in this case and the formatted non-empty array in all the others. <br />The pickup items are `DropdownItem` components which wraps an inner component and handle the items click. If the item is a valid location, a `LocationDropdownItem` is rendered (takes a Location as parameter and shows some information). <br />If the datasource is empty one non-clickable item in rendered with the message `No results found`.|
+| AC1 | Handled the onChange event of the input box. When a text with a length of less than 2 characters is inserted,  the pickup content is collapsed. Otherwise, the pickup is expanded. |
+| AC2 | When a text longer than 2 characters, I trigger the call to load the locations from the API endpoint and show them inside a Dropdown component. |
+| AC3 | The call has a parameter `number_of_results_required` that limits the list of elements retrieved from the list. I've set this parameter to 6 inside the `server.js` implementation. | 
+| AC4 | When the call doesn't find any matching parameter, it returns an item with the name property with value `No results found` and the result contains a property `numFound` that is set to 0. Handled this edge case inside the server.js file, returning an empty array in this case and the formatted non-empty array in all the others. <br />The pickup items are `DropdownItem` components which wraps an inner component and handles the items click. If the item is a valid location, a `LocationDropdownItem` is rendered (takes a Location as a parameter and shows some information). <br />If the data source is empty one non-clickable item is rendered with the message `No results found`.|
 | AC5 | Implemented with AC1 | 
 
 
@@ -55,7 +55,7 @@ The styling of the application has been made with `SASS/BEM` syntax. Every compo
 
 I've also implemented a few non-required features:
  - click of one pickup element overrides the value inside the input box. (in future implementations this feature could be implemented using `redux`)
- - creater a `Loader` component with a basic loader animation (pure css)
+ - created a `Loader` component with a basic loader animation (pure CSS)
  - the Location class exposes a few methods to retrieve the description of the location.
  - imported the package `react-app-polyfill` with IE9 polyfill (Promise polyfill)
 
@@ -63,10 +63,10 @@ I've also implemented a few non-required features:
 ## Future implementations
 
 
-Additional implementations that were not asked inside the document and that could be integrated in future developments:
+Additional implementations that were not asked inside the document and that could be integrated into future developments:
  - focus and keyboard navigation inside the item of the dropdown;
  - focus on the input box should clear the value (as seen on rentalcars.com)
- - using a `rxjs` observable with a debounce time to avoid to many api calls while writing.
+ - using a `rxjs` observable with a debounce time to avoid too many API calls while writing.
  - on click outside the pickup items, collapse the pickup
  - on scroll outside the pickup items container, collapse the pickup
  - add components unit testing with `jest`

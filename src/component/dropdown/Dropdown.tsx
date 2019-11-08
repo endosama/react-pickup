@@ -12,19 +12,19 @@ interface IDropdown {
 }
 
 export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
-    const [text, setText] = useState("")
-    const [loading, setLoading] = useState(false)
+    const [inputText, setInputText] = useState('')
+    const [isLoading, setLoading] = useState(false)
     const [datasource, setDatasource] = useState<Location[]>([])
     const [isOpened, setOpened] = useState(false)
 
-    const handleSetText = async (e: ChangeEvent<HTMLInputElement>) => {
-        const value = e.currentTarget.value
-        setText(value)
-        if (value && value.length > 1) {
+    const handleInputTextChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        const inputTextValue = e.currentTarget.value
+        setInputText(inputTextValue)
+        if (inputTextValue && inputTextValue.length > 1) {
             setLoading(true)
             try {
-                const ds = await ResourceService.loadDatasource(value);
-                setDatasource(ds)
+                const result = await ResourceService.loadDatasource(inputTextValue);
+                setDatasource(result)
             } catch(e) {
                 setDatasource([])
             } finally {
@@ -37,8 +37,8 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
         }
     };
 
-    const notifyLocationClicked = (location: Location) => {
-        setText(location.getFullDescription())
+    const notifyLocationItemSelected = (location: Location) => {
+        setInputText(location.getFullDescription())
         setOpened(false) 
     }
 
@@ -50,15 +50,15 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
             <input 
                 aria-label={label}
                 aria-required="true"
-                id="Dropdown__input" 
+                id="Dropdown__input" //not unique if more than one dropdown in the dom. Add guid.
                 className="Dropdown__input" 
-                value={text} 
-                onChange={handleSetText} 
+                value={inputText} 
+                onChange={handleInputTextChange} 
                 type='text' 
                 placeholder={placeholder} 
                 />
             {
-                loading && 
+                isLoading && 
                 <span className="Dropdown__loader">
                     <Loader></Loader>
                 </span>
@@ -69,7 +69,7 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
                     (
                         datasource.length > 0 ?
                             datasource.map((location: Location, i: number) => (
-                                <DropdownItem key={i} notifyClick={() => notifyLocationClicked(location)}>
+                                <DropdownItem key={i} notifyClick={() => notifyLocationItemSelected(location)}>
                                     <LocationDropdownItem location={location}></LocationDropdownItem>
                                 </DropdownItem>)
                             )

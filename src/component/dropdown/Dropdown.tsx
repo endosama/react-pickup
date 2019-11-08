@@ -43,11 +43,20 @@ export const Dropdown: React.FC<IDropdown> = ({ placeholder, label }) => {
     }
 
     return <div className="Dropdown">
-        <div className="Dropdown__label">
+        <label htmlFor="Dropdown__input" className="Dropdown__label">
             {label}
-        </div>
+        </label>
         <div>
-            <input className="Dropdown__input" value={text} onChange={handleSetText} type='text' placeholder={placeholder} />
+            <input 
+                aria-label={label}
+                aria-required="true"
+                id="Dropdown__input" 
+                className="Dropdown__input" 
+                value={text} 
+                onChange={handleSetText} 
+                type='text' 
+                placeholder={placeholder} 
+                />
             {
                 loading && 
                 <span className="Dropdown__loader">

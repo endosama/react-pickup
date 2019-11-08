@@ -2,20 +2,16 @@
 Run in `development` (not working in IE)
 ```
 npm install
-npm run start
+netlify dev
 ```
 or
 ```
 yarn install
-yarn start
+netlify dev
 ```
+and access http://localhost:8888
 
-Run in `build`
-```
-yarn install
-yarn global add serve
-yarn start
-```
+A working deployed demo can be found [HERE](https://react-pickup-location-demo.netlify.com)
 
 ## Implementation
 Implementation of a simple `React` application that allows an end-user to enter text inside an input box and search through a list of locations exposed by the following api endpoint:
@@ -26,7 +22,9 @@ https://cors.io/?https://www.rentalcars.com/FTSAutocomplete.do?solrIndex=fts_en&
 
 The application has been implemented using `React` 16 and I've used mainly Function Components and Hooks. The base project has been generated with `create-react-app`.
 
-The server app that wraps the api call avoiding CORS errors is written in `Node` and `express`. The proxy has been setup on port 3001 to make it work with the application development server.
+I've chosen to use `netlify` because it simplied me the build process and the deployment of the [demo version](https://react-pickup-location-demo.netlify.com).
+
+The node-fetch app is a `netlify` functions that wraps the api call avoiding CORS errors.
 This server is consumed by the `ResourceService` file that map the api results to a collection of `Location` class type.
 
 The styling of the application has been made with `SASS/BEM` syntax. Every component have his own indipendent SCSS file. There is a global `variables.scss` that should store the common variables for the css.

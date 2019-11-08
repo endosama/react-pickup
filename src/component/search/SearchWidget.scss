@@ -1,15 +1,21 @@
 @import "../../variables.scss";
 
 .SearchWidget {
-    padding: 20px;
+    padding: 24px;
     margin: 20px;
     background-color: #f3ce56;
-    width: 480px;  
+    width: 512px;  
     &__title {
         color: #333;
+        margin-top: 0;
     } 
 }
-@media(max-width: $breakpoint-desktop) {
+@media(max-width: $breakpoint-desktop - 1) {
+    .SearchWidget {
+        width: 480px;   
+    }
+}
+@media(max-width: $breakpoint-tablet - 1) {
     .SearchWidget {
         width: 320px;   
     }
